@@ -26,8 +26,9 @@ def checkIFin_107inch():
     """check if the .py is under the 107inch dir
     """
     current_dir = os.getcwd().split('/')
-    if current_dir[-1] != '107inch':
-        sys.exit('THIS PROGRAM ONLY WORKS UNDER THE 107inch DIR!')
+    if current_dir[-2] != '107inch':
+        sys.exit(
+            'THIS PROGRAM ONLY WORKS WHEN RUN UNDER THE 107inch/McD_masterlog_generator/. DIR!')
         
 def cal_s2n(h, order=25):
     
@@ -42,7 +43,7 @@ def output(df, filename):
     today_str = today.strftime("%b-%d-%Y")
     
     # df.to_csv(f'./{filename}{today_str}.csv', index=False)
-    df.to_excel(f'./{filename}{today_str}.xlsx', index=False, engine='xlsxwriter')
+    df.to_excel(f'../{filename}{today_str}.xlsx', index=False, engine='xlsxwriter')
     
     
 
@@ -62,21 +63,21 @@ def main_masterlog(GET_HEADER_INFO):
     # loop through all yyyy_mm dirs
     for yyyy_mm in tqdm(obs_dirs):
         
-        _current_dir_files = os.listdir(f'./{yyyy_mm}')
+        _current_dir_files = os.listdir(f'../{yyyy_mm}')
         # make sure only observation night's dir is left (i.e., n1)
         n_x_dirs = [i for i in _current_dir_files if (len(i) <=3) & ('n' in i)] 
 
         # loop through all nights dirs
         for n_x in n_x_dirs:
             
-            _current_dir_files = os.listdir(f'./{yyyy_mm}/{n_x}')
+            _current_dir_files = os.listdir(f'../{yyyy_mm}/{n_x}')
             # make sure only spectra data (.ech) is left
             spectrum_echs = [i for i in _current_dir_files if ('.ech' in i)] 
             
             # loop through all spectra
             for ech_file in spectrum_echs:
                 
-                ech_path = f'./{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
+                ech_path = f'../{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
                 h = fits.open(ech_path) # open the fits file
                 
                 info = [] # list to save header info
@@ -159,7 +160,7 @@ def clean_target_name(df_obj):
 
 def clean_alias(df):
 
-    name_alias = pd.read_excel('./data_4_make_master/alias_names.xlsx') 
+    name_alias = pd.read_excel('../data_4_make_master/alias_names.xlsx') 
     name_alias_clean = clean_target_name(name_alias) 
 
     hbc_notnan = ~name_alias_clean['HBC'].isnull()
@@ -204,7 +205,7 @@ def read_RVTargetObservingHistory():
 
 def nir_count():
     target_nir_n = pd.read_csv(
-        './data_4_make_master/igrins_target_obs_times_all_clean_duplicate.csv')  
+        '../data_4_make_master/igrins_target_obs_times_all_clean_duplicate.csv')  
     target_nir_n = target_nir_n[['TAR', 'IGRINS_IR_OBS']]
     
     target_nir_n = target_nir_n.rename(columns = {'TAR':'Target_c',
