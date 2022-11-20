@@ -85,7 +85,11 @@ def main_masterlog(GET_HEADER_INFO):
             for ech_file in spectrum_echs:
                 
                 ech_path = f'{data_dir}{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
-                h = fits.open(ech_path) # open the fits file
+                try:
+                    h = fits.open(ech_path) # open the fits file
+                except:
+                    print(f'Cannot open {ech_path}')
+
                 
                 info = [] # list to save header info
                 info.insert(0, ech_path) # save first column as the spectum dir
