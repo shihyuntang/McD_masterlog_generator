@@ -51,7 +51,7 @@ def main_masterlog(GET_HEADER_INFO):
     
     checkIFin_107inch()
     
-    _current_dir_files = os.listdir()
+    _current_dir_files = os.listdir('../')
     # make sure only observation data dir is left (i.e., with 2011_oct)
     obs_dirs = [i for i in _current_dir_files if (len(i) == 8) & ('_' in i)] 
     # sorting
