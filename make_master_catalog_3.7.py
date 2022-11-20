@@ -160,7 +160,7 @@ def clean_target_name(df_obj):
 
 def clean_alias(df):
 
-    name_alias = pd.read_excel('../data_4_make_master/alias_names.xlsx') 
+    name_alias = pd.read_excel('./data_4_make_master/alias_names.xlsx') 
     name_alias_clean = clean_target_name(name_alias) 
 
     hbc_notnan = ~name_alias_clean['HBC'].isnull()
