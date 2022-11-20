@@ -22,13 +22,13 @@ GET_HEADER_INFO = ['OBJECT', 'OBSERVAT', 'OBSERVER', 'EXPTIME', 'DARKTIME',
 
 #------------
 
-def checkIFin_107inch():
-    """check if the .py is under the 107inch dir
-    """
-    current_dir = os.getcwd().split('/')
-    if current_dir[-2] != '107inch':
-        sys.exit(
-            'THIS PROGRAM ONLY WORKS WHEN RUN UNDER THE 107inch/McD_masterlog_generator/. DIR!')
+# def checkIFin_107inch():
+#     """check if the .py is under the 107inch dir
+#     """
+#     current_dir = os.getcwd().split('/')
+#     if current_dir[-2] != '107inch':
+#         sys.exit(
+#             'THIS PROGRAM ONLY WORKS WHEN RUN UNDER THE 107inch/McD_masterlog_generator/. DIR!')
         
 def cal_s2n(h, order=25):
     
@@ -55,7 +55,7 @@ def get_DataRootDir():
 
 def main_masterlog(GET_HEADER_INFO):
     
-    checkIFin_107inch()
+    # checkIFin_107inch()
     data_dir = get_DataRootDir()
     
     _current_dir_files = os.listdir(data_dir)
