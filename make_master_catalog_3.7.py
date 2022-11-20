@@ -140,7 +140,7 @@ def main_masterlog(GET_HEADER_INFO):
     df_clean_alias = clean_alias(df_clean)
 
     # save the result master log
-    output(df_clean_alias, f'McD107inch_master_log_up2-{yyyy_mm}_CreatedON-')
+    output(df_clean_alias, f'McD107inch_master_log_up2-{obs_dirs[-1]}_CreatedON-')
     # output(df_clean_alias, f'test-{yyyy_mm}')
     
     return df
