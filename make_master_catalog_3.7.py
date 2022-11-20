@@ -45,13 +45,20 @@ def output(df, filename):
     # df.to_csv(f'./{filename}{today_str}.csv', index=False)
     df.to_excel(f'../{filename}{today_str}.xlsx', index=False, engine='xlsxwriter')
     
-    
+def get_DataRootDir():
+    current_dir = os.getcwd()
+    if 'st79' in current_dir:
+        data_dir = '/home/cmj/mcdonald/reduce/107inch/'
+    elif 'sytang' in current_dir:
+        data_dir = '../'
+    return data_dir
 
 def main_masterlog(GET_HEADER_INFO):
     
     checkIFin_107inch()
+    data_dir = get_DataRootDir()
     
-    _current_dir_files = os.listdir('../')
+    _current_dir_files = os.listdir(data_dir)
     # make sure only observation data dir is left (i.e., with 2011_oct)
     obs_dirs = [i for i in _current_dir_files if (len(i) == 8) & ('_' in i)] 
     # sorting
@@ -63,21 +70,21 @@ def main_masterlog(GET_HEADER_INFO):
     # loop through all yyyy_mm dirs
     for yyyy_mm in tqdm(obs_dirs):
         
-        _current_dir_files = os.listdir(f'../{yyyy_mm}')
+        _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}')
         # make sure only observation night's dir is left (i.e., n1)
         n_x_dirs = [i for i in _current_dir_files if (len(i) <=3) & ('n' in i)] 
 
         # loop through all nights dirs
         for n_x in n_x_dirs:
             
-            _current_dir_files = os.listdir(f'../{yyyy_mm}/{n_x}')
+            _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}/{n_x}')
             # make sure only spectra data (.ech) is left
             spectrum_echs = [i for i in _current_dir_files if ('.ech' in i)] 
             
             # loop through all spectra
             for ech_file in spectrum_echs:
                 
-                ech_path = f'../{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
+                ech_path = f'{data_dir}{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
                 h = fits.open(ech_path) # open the fits file
                 
                 info = [] # list to save header info
