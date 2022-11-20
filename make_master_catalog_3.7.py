@@ -205,7 +205,7 @@ def read_RVTargetObservingHistory():
 
 def nir_count():
     target_nir_n = pd.read_csv(
-        '../data_4_make_master/igrins_target_obs_times_all_clean_duplicate.csv')  
+        './data_4_make_master/igrins_target_obs_times_all_clean_duplicate.csv')  
     target_nir_n = target_nir_n[['TAR', 'IGRINS_IR_OBS']]
     
     target_nir_n = target_nir_n.rename(columns = {'TAR':'Target_c',
