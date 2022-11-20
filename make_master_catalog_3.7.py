@@ -140,8 +140,8 @@ def main_masterlog(GET_HEADER_INFO):
     df_clean_alias = clean_alias(df_clean)
 
     # save the result master log
-    # output(df, f'McD107inch_master_log_up2-{yyyy_mm}_createdON-')
-    output(df_clean_alias, f'test-{yyyy_mm}')
+    output(df_clean_alias, f'McD107inch_master_log_up2-{yyyy_mm}_CreatedON-')
+    # output(df_clean_alias, f'test-{yyyy_mm}')
     
     return df
     
@@ -227,7 +227,7 @@ def main_count(df):
     count_all_df = count_all_df.rename(columns = {'index':'Target_c',
                                           'OBJECT_clean': 'McD107_obs'})
     
-    output(count_all_df, 'McD107inch_target_count_createdON-')
+    output(count_all_df, 'McD107inch_target_count_CreatedON-')
     
     target_tab = read_RVTargetObservingHistory()
     target_list = target_tab['Target_c'] .to_numpy()
@@ -248,7 +248,7 @@ def main_count(df):
     target_tab = target_tab.join(target_nir_n.set_index('Target_c'), 
                                  on='Target_c')
     
-    output(target_tab, 'YSOrv_target_count_createdON-')
+    output(target_tab, 'YSOrv_target_count_CreatedON-')
     
     
             
@@ -256,7 +256,7 @@ def main_count(df):
 if __name__ == "__main__":
     
     df = main_masterlog(GET_HEADER_INFO)
-    # main_count(df)
+    main_count(df)
     
     
     
