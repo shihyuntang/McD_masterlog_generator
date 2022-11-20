@@ -166,7 +166,8 @@ def clean_alias(df):
     hbc_notnan = ~name_alias_clean['HBC'].isnull()
     other1_notnan = ~name_alias_clean['other1'].isnull()
 
-    hbc_from = name_alias_clean['HBC'][hbc_notnan].to_numpy(), 
+    hbc_from = name_alias_clean['HBC'][hbc_notnan].to_numpy()
+    hbc_from = [f'hbc{j}' for j in hbc_from]
     hbc_to = name_alias_clean['OBJECT_clean'][hbc_notnan].to_numpy()
 
     other_from = name_alias_clean['other1'][other1_notnan].to_numpy(), 
