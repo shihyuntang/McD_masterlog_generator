@@ -69,10 +69,16 @@ def main_masterlog(GET_HEADER_INFO):
     
     # loop through all yyyy_mm dirs
     for yyyy_mm in tqdm(obs_dirs):
-        
-        _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}')
-        # make sure only observation night's dir is left (i.e., n1)
-        n_x_dirs = [i for i in _current_dir_files if (len(i) <=3) & ('n' in i)] 
+
+        # 2017_nov has a different subfolder dir
+        if yyyy_mm == '2017_nov':
+            #ech_files/1dec/ for example
+            _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}/ech_files')
+            n_x_dirs = [i for i in _current_dir_files if i[-3:] in ['nov', 'dec']] 
+        else:
+            _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}')
+            # make sure only observation night's dir is left (i.e., n1)
+            n_x_dirs = [i for i in _current_dir_files if (len(i) <=3) & ('n' in i)] 
 
         # loop through all nights dirs
         for n_x in n_x_dirs:
