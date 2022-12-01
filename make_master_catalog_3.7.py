@@ -74,23 +74,26 @@ def main_masterlog(GET_HEADER_INFO):
         if yyyy_mm == '2017_nov':
             #ech_files/1dec/ for example
             _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}/ech_files')
+            _current_dir = '{data_dir}{yyyy_mm}/ech_files'
             n_x_dirs = [i for i in _current_dir_files if i[-3:] in ['nov', 'dec']] 
         else:
             _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}')
+            _current_dir = '{data_dir}{yyyy_mm}'
             # make sure only observation night's dir is left (i.e., n1)
             n_x_dirs = [i for i in _current_dir_files if (len(i) <=3) & ('n' in i)] 
 
         # loop through all nights dirs
         for n_x in n_x_dirs:
             
-            _current_dir_files = os.listdir(f'{data_dir}{yyyy_mm}/{n_x}')
+            _current_dir_files = os.listdir(f'{_current_dir}/{n_x}')
+            _current_dir = f'{_current_dir}/{n_x}'
             # make sure only spectra data (.ech) is left
             spectrum_echs = [i for i in _current_dir_files if ('.ech' in i)] 
             
             # loop through all spectra
             for ech_file in spectrum_echs:
                 
-                ech_path = f'{data_dir}{yyyy_mm}/{n_x}/{ech_file}' # each spectrum's dir
+                ech_path = f'{_current_dir}/{ech_file}' # each spectrum's dir
                 try:
                     h = fits.open(ech_path) # open the fits file
                 except:
