@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 
 GET_HEADER_INFO = ['OBJECT', 'OBSERVAT', 'OBSERVER', 'EXPTIME', 'DARKTIME', 
                     'IMAGETYP', 'DATE-OBS', 'UT', 'RA', 'DEC', 'EQUINOX', 
-                    'HA', 'ZD', 'AIRMASS']
+                    'HA', 'ZD', 'AIRMASS', 'OBASE']
 
 #------------
 
