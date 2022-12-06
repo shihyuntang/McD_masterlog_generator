@@ -85,7 +85,7 @@ def main_masterlog(GET_HEADER_INFO):
         # loop through all nights dirs
         for n_x in n_x_dirs:
             
-            if (yyyy_mm == '2021_nov') & (n_x=='n13'):
+            if (yyyy_mm == '2021_nov') & ((n_x=='n13') | (n_x=='n14')):
                 _current_dir_files = os.listdir(f'{_current_dir_yyyymm}/{n_x}/optimal')
                 _current_dir_nx = f'{_current_dir_yyyymm}/{n_x}/optimal'
                 # make sure only spectra data (.ech) is left
