@@ -132,8 +132,10 @@ def main_masterlog(GET_HEADER_INFO):
                     info.insert(len(info), np.nan)
                 
                 # -- add program type, e.g., rv, ce
+                # e.g., aug23logg0029.ech, to get "logg"
                 if len(ech_file) > 10:
-                    pro_type = ech_file[5:7]
+                    pro_type = ech_file[5:].split('.')[0]
+                    pro_type = ''.join([i for i in pro_type if not i.isdigit()])
                     info.insert(len(info), pro_type)
                 else:
                     info.insert(len(info), 'NaN')
