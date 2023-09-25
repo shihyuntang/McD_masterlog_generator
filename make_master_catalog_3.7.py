@@ -277,7 +277,7 @@ def main_count(df):
     target_nir_n = nir_count()
     target_tab = target_tab.join(target_nir_n.set_index('Target_c'), 
                                  on='Target_c')
-    
+    target_tab = target_tab.rename(columns = {'count': 'McD107_obs'})
     output(target_tab, 'YSOrv_target_count_CreatedON-')
     
     
