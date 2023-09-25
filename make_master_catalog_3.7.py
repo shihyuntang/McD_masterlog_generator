@@ -268,8 +268,9 @@ def main_count(df):
     count_df = df_obj_counts[tar_loc]
     count_df = count_df.to_frame()
     count_df.reset_index(inplace=True)
-    count_df = count_df.rename(columns = {'index':'Target_c',
-                                          'OBJECT_clean': 'McD107_obs'})
+    # count_df = count_df.rename(columns = {'index':'Target_c',
+    #                                       'OBJECT_clean': 'McD107_obs'})
+    count_df = count_df.rename(columns = {'OBJECT_clean': 'Target_c'})
     
     target_tab = target_tab.join(count_df.set_index('Target_c'), on='Target_c')
     
